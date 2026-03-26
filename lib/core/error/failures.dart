@@ -7,6 +7,8 @@ class ServerFailure extends Failure {
   const ServerFailure(String message) : super(message);
 }
 
+//! 1.1.4 ISP
+//? L'extension FailureIcon ajoute la propriété icon à toutes les Failure. 
 extension FailureIcon on Failure {
   String get icon {
     if (this is ServerFailure) {

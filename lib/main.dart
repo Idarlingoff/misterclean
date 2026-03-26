@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'features/cats/presentation/pages/cat_detail_page.dart';
 import 'features/cats/presentation/pages/home_screen.dart';
 
+//! 2.1.5 Dead code
+//? Ce bloc commenté est du code mort : il ne sera jamais exécuté et encombre le fichier.
 // TODO: fix this later - old routing approach
 // void main() {
 //   runApp(MaterialApp(
@@ -66,6 +68,10 @@ class AppObserver extends ProviderObserver {
   }
 }
 
+//! 3.3.5 Abus de Singleton
+//? Couplage fort rend les tests difficiles et viole le principe de l'injection de dépendances.
+//! 1.2.2 YAGNI
+//? Les méthodes ne sont jamais appelées dans le code 
 class NavigationService {
   static final NavigationService instance = NavigationService._internal();
   NavigationService._internal();

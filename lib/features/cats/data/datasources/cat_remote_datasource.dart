@@ -20,6 +20,8 @@ abstract class CatRemoteDataSource {
 class CatRemoteDataSourceImpl implements CatRemoteDataSource {
   final http.Client httpClient;
 
+  //! 1.1.2 OCP
+  //? Cette suite de if/else if pour construire le path viole l'OCP : ajouter une version v3 oblige à modifier cette méthode.
   String apiVersion = 'v1';
 
   CatRemoteDataSourceImpl({required this.httpClient});

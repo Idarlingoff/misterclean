@@ -5,6 +5,9 @@ import '../../domain/entities/cat.dart';
 import 'arguments.dart';
 
 class CatDetailPage extends StatelessWidget {
+  //! 3.3.2 Paramètres nommés dans les constructeurs
+  //? Le constructeur utilise Key? key sans super parameter.
+  // const CatDetailPage({super.key});
   const CatDetailPage({Key? key}) : super(key: key);
   static const routeName = '/detail';
 
@@ -12,6 +15,8 @@ class CatDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var cat = _getArguments(context);
 
+    // ! 3.1.3 Avoid redundancy // KYSS
+    // ? La condition !(cat != null) est strictement équivalente à cat == null.
     if (!(cat != null) || (cat == null ? true : false)) {
       Navigator.pop(context);
       return const Scaffold();

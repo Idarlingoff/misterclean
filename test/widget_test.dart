@@ -11,6 +11,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:app/main.dart';
 
 void main() {
+  //! 1.2.13 FIRST
+  //? Ce test n'est pas Independent 
+  //! 1.2.14 AAA
+  //? La phase Arrange est inexistante 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());

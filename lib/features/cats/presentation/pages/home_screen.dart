@@ -26,6 +26,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  //! 1.2.5. DRY
+  //? Ces trois méthodes font exactement la même chose : afficher une SnackBar avec un texte "coming soon"
+  //! 1.2.2. YAGNI 
+  //? On a pas besoin de ces méthodes 
   void _toggleDarkMode(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Dark mode coming soon')));

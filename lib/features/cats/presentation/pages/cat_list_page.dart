@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:app/shared/styles/ui_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// ! 1.2.3 Separation of Concerns
+// ? Le package http est importé directement dans la couche présentation. La vue ne devrait pas faire d'appels réseau directs
 import 'package:http/http.dart' as http;
 
 import '../../domain/entities/cat.dart';
@@ -32,6 +35,10 @@ class _CatListPageState extends ConsumerState<CatListPage> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    //! 2.1.5. Dead code
+    //? Code légèrement inutile
+    //! 1.2.10. Hollywood Principal
+    //? A pour but de remplacer ce que fait déjà le contrôler
     Timer.periodic(const Duration(seconds: 120), (timer) {
       ref.read(catNotifierProvider.notifier).fetchCats();
     });
@@ -45,6 +52,8 @@ class _CatListPageState extends ConsumerState<CatListPage> {
   }
 
   void _onScroll() {
+    //! 3.1.4 Naming conventions
+    //? Les variables cs, d et mx ont des noms non descriptifs. Elles devraient s'appeler catState, scrollOffset et maxExtent pour plus de lisibilité.
     final cs = ref.read(catNotifierProvider);
     final d = _scrollController.offset;
     final mx = _scrollController.position.maxScrollExtent;
@@ -53,6 +62,8 @@ class _CatListPageState extends ConsumerState<CatListPage> {
     }
   }
 
+  //! 1.2.8 Law of Demeter
+  //? Cette méthode accepte 8 paramètres
   Widget _buildCustomItem(Cat cat, bool isFirst, bool isLast, Color bg,
       double h, String label, bool showIcon, int maxLines) {
     return Container(
@@ -69,6 +80,10 @@ class _CatListPageState extends ConsumerState<CatListPage> {
     );
   }
 
+  // ! Bloaters
+  // ? Méthode bien trop longue donc dangereuse à retoucher
+  // ! Composition de widget
+  // ? Préférence à composer plusieurs widget plutôt que d'en faire un gros
   @override
   Widget build(BuildContext context) {
     final catState = ref.watch(catNotifierProvider);
@@ -217,6 +232,8 @@ class _CatListPageState extends ConsumerState<CatListPage> {
                       true,
                       1);
                 } else {
+                  //! 1.2.3. Separation of concerns
+                  //? Pas l'endroit idéal pour appeler cette méthode
                   _fetchCatImage(catState.displayedCats[index].id);
                   return CatItem(catState.displayedCats[index]);
                 }

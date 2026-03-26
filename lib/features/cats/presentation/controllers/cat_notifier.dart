@@ -64,6 +64,8 @@ class CatNotifier extends Notifier<CatListState> {
 
     try {
       final dataSource = ref.read(catRemoteDataSourceProvider);
+      // ! 1.1.1. Single Responsibility Principle
+      // ? Il vaudrait mieux avoir une classe de log centralisé
       print('LOG [${DateTime.now()}]: fetching page $page (API ${dataSource.apiVersion})');
 
       final getCats = ref.read(getCatsUseCaseProvider);

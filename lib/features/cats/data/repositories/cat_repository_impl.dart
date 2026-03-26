@@ -13,6 +13,8 @@ final catRepositoryProvider = Provider<CatRepository>((ref) {
 });
 
 class CatRepositoryImpl implements CatRepository {
+  //! 1.1.5 DIP
+  //? remoteDataSource est typé CatRemoteDataSourceImpl (l'implémentation concrète) au lieu de CatRemoteDataSource (l'abstraction).
   final CatRemoteDataSourceImpl remoteDataSource;
 
   CatRepositoryImpl({required this.remoteDataSource});
